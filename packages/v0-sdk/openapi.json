@@ -100,9 +100,9 @@
                   },
                   "responseMode": {
                     "type": "string",
-                    "enum": ["sync", "async"],
+                    "enum": ["sync", "async", "experimental_stream"],
                     "default": "sync",
-                    "description": "Controls how the response is delivered.\n\n- `\"sync\"`: The response is returned immediately with the HTTP request.\n- `\"async\"`: Returns a message placeholder immediately; use getById to poll for completion status and final output."
+                    "description": "Controls how the response is delivered.\n\n- `\"sync\"`: The response is returned immediately with the HTTP request.\n- `\"async\"`: Returns a message placeholder immediately; use getById to poll for completion status and final output.\n- `\"experimental_stream\"`: Returns content parts as Server-Sent Events for real-time streaming."
                   },
                   "designSystemId": {
                     "type": ["string", "null"],
@@ -832,6 +832,22 @@
                           }
                         },
                         "required": ["type", "zip"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "const": "template",
+                            "description": "Specifies the initialization method. For this endpoint, it defines the source of content being used to initialize the chat."
+                          },
+                          "templateId": {
+                            "type": "string",
+                            "description": "The ID of the template to initialize the chat from. This should be a valid template ID from the v0 template system."
+                          }
+                        },
+                        "required": ["type", "templateId"],
                         "additionalProperties": false
                       }
                     ]
@@ -3115,9 +3131,9 @@
                   },
                   "responseMode": {
                     "type": "string",
-                    "enum": ["sync", "async"],
+                    "enum": ["sync", "async", "experimental_stream"],
                     "default": "sync",
-                    "description": "Controls how the response is delivered.\n\n- `\"sync\"`: The response is returned immediately with the HTTP request.\n- `\"async\"`: Returns a message placeholder immediately; use getById to poll for completion status and final output."
+                    "description": "Controls how the response is delivered.\n\n- `\"sync\"`: The response is returned immediately with the HTTP request.\n- `\"async\"`: Returns a message placeholder immediately; use getById to poll for completion status and final output.\n- `\"experimental_stream\"`: Returns content parts as Server-Sent Events for real-time streaming."
                   }
                 },
                 "required": ["message"],

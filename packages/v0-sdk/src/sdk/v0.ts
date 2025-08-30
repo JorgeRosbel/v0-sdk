@@ -601,7 +601,7 @@ export interface ChatsCreateRequest {
     imageGenerations?: boolean
     thinking?: boolean
   }
-  responseMode?: 'sync' | 'async'
+  responseMode?: 'sync' | 'async' | 'experimental_stream'
   designSystemId?: string | null
 }
 
@@ -637,6 +637,7 @@ export type ChatsInitRequest = {
       lockAllFiles?: never
       registry?: never
       zip?: never
+      templateId?: never
     }
   | {
       type: 'repo'
@@ -648,6 +649,7 @@ export type ChatsInitRequest = {
       files?: never
       registry?: never
       zip?: never
+      templateId?: never
     }
   | {
       type: 'registry'
@@ -658,6 +660,7 @@ export type ChatsInitRequest = {
       files?: never
       repo?: never
       zip?: never
+      templateId?: never
     }
   | {
       type: 'zip'
@@ -668,6 +671,16 @@ export type ChatsInitRequest = {
       files?: never
       repo?: never
       registry?: never
+      templateId?: never
+    }
+  | {
+      type: 'template'
+      templateId: string
+      files?: never
+      repo?: never
+      lockAllFiles?: never
+      registry?: never
+      zip?: never
     }
 )
 
@@ -727,7 +740,7 @@ export interface ChatsSendMessageRequest {
     imageGenerations?: boolean
     thinking?: boolean
   }
-  responseMode?: 'sync' | 'async'
+  responseMode?: 'sync' | 'async' | 'experimental_stream'
 }
 
 export type ChatsSendMessageResponse = ChatDetail
